@@ -17,14 +17,14 @@ startBtn.onclick = e => {
   startBtn.classList.add('is-danger');
   startBtn.innerText = 'Recording';
 };
-
-const stopBtn = document.getElementById('stopBtn');
-
-stopBtn.onclick = e => {
-  mediaRecorder.stop();
-  startBtn.classList.remove('is-danger');
-  startBtn.innerText = 'Start';
-};
+//
+// const stopBtn = document.getElementById('stopBtn');
+//
+// stopBtn.onclick = e => {
+//   mediaRecorder.stop();
+//   startBtn.classList.remove('is-danger');
+//   startBtn.innerText = 'Start';
+// };
 
 const videoSelectBtn = document.getElementById('videoSelectBtn');
 videoSelectBtn.onclick = getVideoSources;
