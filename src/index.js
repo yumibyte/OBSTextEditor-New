@@ -1,3 +1,14 @@
+// console.log("start");
+//
+// function requireFunc(inputModuleName) {
+//   define(function (require) {
+//       //Notice the space between require and the arguments.
+//       return(require (inputModuleName));
+//   });
+//
+// }
+
+// const app = requireFunc('electron');
 const { app, BrowserWindow } = require('electron');
 const path = require('path');
 
