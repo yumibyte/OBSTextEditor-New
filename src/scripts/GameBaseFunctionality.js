@@ -1,8 +1,8 @@
 
 const stopBtn = document.getElementById('stopBtn');
 
-stopBtn.onclick = e => {
+gamePanelOW.onclick = e => {
 
   console.log("Hello World!");
-  
+
 };
