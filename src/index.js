@@ -1,9 +1,19 @@
+// console.log("start");
+//
+// function requireFunc(inputModuleName) {
+//   define(function (require) {
+//       //Notice the space between require and the arguments.
+//       return(require (inputModuleName));
+//   });
+//
+// }
+
+// const app = requireFunc('electron');
 const { app, BrowserWindow } = require('electron');
 const path = require('path');
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
-if (require('electron-squirrel-startup')) {
-  // eslint-disable-line global-require
+if (require('electron-squirrel-startup')) { // eslint-disable-line global-require
   app.quit();
 }
 
@@ -12,6 +22,10 @@ const createWindow = () => {
   const mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
+    webPreferences: {
+      nodeIntegration: true,
+      enableRemoteModule: true,
+    }
   });
 
   // and load the index.html of the app.
@@ -26,10 +40,10 @@ const createWindow = () => {
 // Some APIs can only be used after this event occurs.
 app.on('ready', createWindow);
 
-// Quit when all windows are closed, except on macOS. There, it's common
-// for applications and their menu bar to stay active until the user quits
-// explicitly with Cmd + Q.
+// Quit when all windows are closed.
 app.on('window-all-closed', () => {
+  // On OS X it is common for applications and their menu bar
+  // to stay active until the user quits explicitly with Cmd + Q
   if (process.platform !== 'darwin') {
     app.quit();
   }
