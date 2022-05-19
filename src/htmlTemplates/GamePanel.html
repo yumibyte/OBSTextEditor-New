@@ -21,10 +21,13 @@
 
   </head>
 
-  <body class="content">
-      <div class="h3 mb-0 font-weight-bold text-gray-800">Game Panel</div>
+  <body class="content" onload="updateGamePanel()">
+      <center><div id="gamePanelTitle" class="h1 mb-0 font-weight-bold color-black">Game Panel</div></center>
       <a class="button is-warning" href="../index.html">Back</a>
+      <a class="button is-warning" onclick="navigateToGamePanel('Chess')">test</a>
 
+
+      <div id="teamInputTitle" class="h3 mb-0 font-weight-bold text-gray-800">!</div>
 
   </body>
   <script src="../scripts/GameBaseFunctionality.js"></script>
