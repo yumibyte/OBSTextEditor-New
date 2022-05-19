@@ -25,3 +25,7 @@ body {
 .extra-padding {
     margin-bottom: 100px;
 }
+
+.color-black {
+  color: black;
+}

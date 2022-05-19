@@ -2,15 +2,12 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>Hello World!</title>
+    <title>OBS Text Editor</title>
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css"
     />
     <link rel="stylesheet" href="index.css" />
-    <!-- <script data-main="index.js" src="scripts/require.js"></script> -->
-    <script src="scripts/render.js"></script>
-    <script defer src="scripts/GameSelectionPanel.js"></script>
 
 
 
@@ -28,7 +25,7 @@
 
 
   <div class="extra-padding">
-    <h1><center>OBS Text Editor</center></h1>
+    <h1 id="gamePanelTitle"><center>OBS Text Editor</center></h1>
 
   </div>
 
@@ -51,38 +48,77 @@
     </a> -->
 <!-- selection options -->
 
-<div class="row justify-content-center">
+    <div class="row justify-content-center">
+          <div class="col-xl-2 col-md-6 mb-4">
+            <div class="card shadow h-100 py-2">
 
-    <!-- Earnings (Monthly) Card Example -->
-  <a href="#" class="card-body">
-
-    <div class="col-xl-2 col-md-6 mb-4">
-      <div class="card shadow h-100 py-2">
-
-          <div class="card-body">
-              <div class="row no-gutters align-items-center">
-                  <div class="col mr-2 card-square">
-                      <div class="h3 mb-0 font-weight-bold text-gray-800">Overwatch</div>
-                  </div>
-              </div>
+                <a onclick="navigateToGamePanel('OW')" href="htmlTemplates/GamePanel.html" class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2 card-square">
+                            <div class="h3 mb-0 font-weight-bold text-gray-800">Overwatch</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
           </div>
-      </div>
+
+          <div class="col-xl-2 col-md-6 mb-4">
+            <div class="card shadow h-100 py-2">
+
+                <a onclick="navigateToGamePanel('LoL')" href="htmlTemplates/GamePanel.html" class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2 card-square">
+                            <div class="h3 mb-0 font-weight-bold text-gray-800">League of Legends</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+          </div>
+
+          <div class="col-xl-2 col-md-6 mb-4">
+            <div class="card shadow h-100 py-2">
+
+                <a onclick="navigateToGamePanel('RL')" href="htmlTemplates/GamePanel.html" class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2 card-square">
+                            <div class="h3 mb-0 font-weight-bold text-gray-800">Rocket League</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+          </div>
+
+          <div class="col-xl-2 col-md-6 mb-4">
+            <div class="card shadow h-100 py-2">
+
+                <a onclick="navigateToGamePanel('SSBU')" href="htmlTemplates/GamePanel.html" class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2 card-square">
+                            <div class="h3 mb-0 font-weight-bold text-gray-800">Super Smash Bros</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+          </div>
+
+          <div class="col-xl-2 col-md-6 mb-4">
+            <div class="card shadow h-100 py-2">
+
+                <a onclick="navigateToGamePanel('Chess')" href="htmlTemplates/GamePanel.html" class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2 card-square">
+                            <div class="h3 mb-0 font-weight-bold text-gray-800">Chess</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+          </div>
+
     </div>
-  </a>
-
-
-</div>
-
-
-
-
-    <!-- <video></video>
-
-    <button id="startBtn" class="button is-primary">Start</button> -->
-    <button id="stopBtn" class="button is-warning">Stop</button>
-
     <hr />
 
 
   </body>
+  <script src="scripts/GameBaseFunctionality.js"></script>
+
 </html>
