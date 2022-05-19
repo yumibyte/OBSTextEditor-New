@@ -22,12 +22,39 @@
   </head>
 
   <body class="content" onload="updateGamePanel()">
-      <center><div id="gamePanelTitle" class="h1 mb-0 font-weight-bold color-black">Game Panel</div></center>
       <a class="button is-warning" href="../index.html">Back</a>
-      <a class="button is-warning" onclick="navigateToGamePanel('Chess')">test</a>
+
+      <center><div id="gamePanelTitle" class="h1 mb-0 font-weight-bold color-black">Game Panel</div></center>
+      <div class="container">
+
+        <div class="card o-hidden border-0 shadow-lg my-5">
+            <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    <div class="col-lg-5 d-none"></div>
+
+                      <div class="col-lg-7">
+                          <div class="p-5">
+                              <form class="user">
+
+                                <div class="form-group">
+                                    <input type="email" class="form-control form-control-user" id="exampleInputEmail"
+                                        placeholder="Email Address">
+                                </div>
+                              <!-- <div id="teamInputTitle" class="h3 mb-0 font-weight-bold text-gray-800">!</div> -->
+                                <div id="" class="h3 mb-0 font-weight-bold text-gray-800">!</div>
+                              </form>
+                          </div>
+                      </div>
+                    </div>
+                </div>
+              </div>
+          </div>
+      </div>
 
 
-      <div id="teamInputTitle" class="h3 mb-0 font-weight-bold text-gray-800">!</div>
+
+
 
   </body>
   <script src="../scripts/GameBaseFunctionality.js"></script>
