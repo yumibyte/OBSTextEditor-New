@@ -23,8 +23,18 @@ function navigateToGamePanel(gameType) {
 }
 
 function filterSelected() {
-  console.log("test!");
+  //
 }
+
+function clearRoster() {
+  //
+}
+
+function generateStream() {
+  //
+}
+
+
 
 function updateGamePanel() {
   console.log(localStorage.getItem("teamInputTitle"));

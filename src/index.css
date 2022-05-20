@@ -29,3 +29,15 @@ body {
 .color-black {
   color: black;
 }
+
+/** additional css for GamePanel **/
+
+.color-green {
+  background-color: #4FA64F !important;
+}
+
+.btn-lg-2 {
+  padding: 25px 50px !important;
+  font-size: 20px !important;
+  font-weight: bold !important;
+}
