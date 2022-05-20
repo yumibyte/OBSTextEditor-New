@@ -27,73 +27,157 @@
       <a class="button is-warning" href="../index.html">Back</a>
 
       <center><div id="gamePanelTitle" class="h1 mb-0 font-weight-bold color-black">Game Panel</div></center>
-      <div class="container">
 
-        <div class="card o-hidden border-0 shadow-lg my-5">
-            <div class="card-body p-0">
-                <!-- Nested Row within Card Body -->
-                <div class="row">
-                    <div class="col-lg-5 d-none"></div>
+      <div class="row justify-content-center">
+        <div class="container-square">
 
-                      <div class="col-lg-7">
-                          <div class="p-5">
-                              <form class="user">
-                                <div class="form-group row">
-                                  <!-- <div id="teamInputTitle" class="h3 mb-0 font-weight-bold text-gray-800">!</div> -->
+          <div class="card o-hidden border-0 shadow-lg my-5">
+              <div class="card-body p-0">
+                  <!-- Nested Row within Card Body -->
+                  <div class="row">
+                      <div class="col-lg-5 d-none"></div>
 
-                                    <div id="" class="h3 mb-0 font-weight-bold text-gray-800">Opposing Team Name</div>
-                                    <input type="email" class="form-control form-control-user" id="exampleInputEmail"
-                                        placeholder="Email Address">
-                                </div>
+                        <div class="col-lg-7">
+                            <div class="p-5">
+                                <form class="user">
+                                    <!-- <div id="teamInputTitle" class="h3 mb-0 font-weight-bold text-gray-800">!</div> -->
+                                  <div class="form-group row">
 
-                                <div class="form-group row">
-                                  <!-- <div id="teamInputTitle" class="h3 mb-0 font-weight-bold text-gray-800">!</div> -->
+                                      <div class="mb-2">
+                                          <div id="" class="h3 mb-0 font-weight-bold text-gray-800">Opposing Team Name</div>
+                                      </div>
 
-                                    <div class="h3 mb-0 font-weight-bold text-gray-800">Season</div>
-                                    <!-- add radial buttons-->
-                                </div>
-
-                                <div class="form-group row">
-
-                                    <div class="h3 mb-0 font-weight-bold text-gray-800">Roster Selection</div>
-
-                                    <a href="#" class="btn btn-primary btn-circle">
-                                        <span onclick="filterSelected()" class="material-icons icon-size-small">filter_list</span>
-                                    </a>
-                                </div>
-                                <div class="row">
-                                  <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <div class="dropdown mb-4">
-                                        <button class="btn btn-primary dropdown-toggle" type="button"
-                                            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                                            aria-expanded="false">
-                                            Player Name
-                                        </button>
-                                        <div class="dropdown-menu animated--fade-in"
-                                            aria-labelledby="dropdownMenuButton">
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
-                                    </div>
                                   </div>
-                                </div>
-                                <!-- dropdown-->
+                                  <div class ="mb-2">
+                                    <input type="email" class="form-control form-control-user" id="exampleInputEmail"
+                                        placeholder="">
+                                  </div>
 
-                                <div class="form-group row">
-                                  <a onclick="clearRoster()" class="btn btn-secondary" href="../index.html">Clear Roster</a>
-                                </div>
-                                <center><a onclick="generateStream()" class="btn btn-success color-green btn-lg-2">Generate Stream</a></center>
 
-                              </form>
-                          </div>
+                                  <div class="form-group row">
+                                    <!-- <div id="teamInputTitle" class="h3 mb-0 font-weight-bold text-gray-800">!</div> -->
+
+                                      <div class="h3 mb-0 font-weight-bold text-gray-800">Season</div>
+                                  </div>
+
+                                  <div class="form-group">
+                                      <div class="custom-control custom-radio col-lg-3">
+                                          <input type="radio" checked="checked" id="orgtype1" name="orgtype" class="custom-control-input">
+                                          <label class="custom-control-label" for="orgtype1">
+                                              Preseason
+                                          </label>
+                                      </div>
+                                      <div class="custom-control custom-radio col-lg-3">
+                                          <input type="radio" id="orgtype2" name="orgtype" class="custom-control-input">
+                                          <label class="custom-control-label" for="orgtype2">
+                                              MainSeason
+                                          </label>
+                                      </div>
+                                      <div class="custom-control custom-radio col-lg-3">
+                                          <input type="radio" id="orgtype3" name="orgtype" class="custom-control-input">
+                                          <label class="custom-control-label" for="orgtype3">
+                                          Playoffs
+                                          </label>
+                                      </div>
+                                      <div class="custom-control custom-radio col-lg-3">
+                                          <input type="radio" id="orgtype4" name="orgtype" class="custom-control-input">
+                                          <label class="custom-control-label" for="orgtype4">
+                                          Finals
+                                          </label>
+                                      </div>
+
+                                  </div>
+
+                                  <div class="form-group row">
+
+                                      <div class="h3 mb-0 font-weight-bold text-gray-800">Roster Selection</div>
+                                      <div class="left-padding">
+
+                                          <a href="#" class="btn btn-primary btn-circle">
+                                              <span onclick="filterSelected()" class="material-icons icon-size-small">filter_list</span>
+                                          </a>
+                                      </div>
+                                  </div>
+                                  <div class="row">
+
+                                      <div class="row">
+                                        <div class=""
+                                        <div class="dropdown mb-4">
+                                            <button class="btn btn-primary dropdown-toggle" type="button"
+                                                id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                                aria-expanded="false">
+                                                Player Name
+                                            </button>
+                                            <div class="dropdown-menu animated--fade-in"
+                                                aria-labelledby="dropdownMenuButton">
+                                                <a class="dropdown-item" href="#">Action</a>
+                                                <a class="dropdown-item" href="#">Another action</a>
+                                                <a class="dropdown-item" href="#">Something else here</a>
+                                            </div>
+                                        </div>
+
+                                      </div>
+
+                                  </div>
+                                  <!-- dropdown-->
+
+                                  <div class="form-group row left-padding">
+                                    <a onclick="clearRoster()" class="btn btn-secondary" href="../index.html">Clear Roster</a>
+                                  </div>
+                                </form>
+                            </div>
+                        </div>
                       </div>
+
+                  </div>
+
+                  <div class="form-group bottom-padding">
+                    <center><a onclick="generateStream()" class="btn btn-success color-green btn-lg-2 bottom-padding">Generate Stream</a></center>
+                  </div>
+
+                </div>
+            </div>
+
+            <div class="container-square container-square-force">
+
+              <div class="card o-hidden border-0 shadow-lg my-5">
+                  <div class="card-body p-0">
+                    <!-- Nested Row within Card Body -->
+                    <div class="row">
+                        <div class="col-lg-5 d-none"></div>
+
+                          <div class="col-lg-7">
+                              <div class="p-5">
+                                  <form class="user">
+                                      <!-- <div id="teamInputTitle" class="h3 mb-0 font-weight-bold text-gray-800">!</div> -->
+                                    <div class="form-group row">
+                                      <div class="mb-2">
+
+                                          <div id="" class="h3 mb-0 font-weight-bold text-gray-800">Stream Preview</div>
+                                      </div>
+                                    </div>
+
+
+
+                                    <div class="form-group">
+
+                                      <div class="h5 mb-0 font-weight-light text-gray-800">Stream Preview</div>
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-light text-gray-800">
+
+                                    </div>
+
+
+                                    </div>
+                                  </form>
+                              </div>
+                          </div>
                     </div>
+                  </div>
+
                 </div>
               </div>
-          </div>
-      </div>
-
+    </div>
 
 
 

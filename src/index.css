@@ -41,3 +41,35 @@ body {
   font-size: 20px !important;
   font-weight: bold !important;
 }
+
+.left-padding {
+  padding-left: 20px;
+}
+
+.left-padding-lg {
+  padding-left: 100px;
+
+}
+
+.container-square {
+  width: 50% !important;
+  height: 50% !important;
+  padding-left: 20px;
+}
+
+.container-square-force {
+  width: 30% !important;
+
+}
+
+.bottom-padding {
+  margin-bottom: 20px !important;
+}
+
+.no-wrap {
+  width: 100% !important;
+}
+
+.bottom-padding-lg {
+  margin-bottom: 490px !important;
+}
