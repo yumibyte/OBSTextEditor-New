@@ -22,6 +22,20 @@ function navigateToGamePanel(gameType) {
   }
 }
 
+function filterSelected() {
+  //
+}
+
+function clearRoster() {
+  //
+}
+
+function generateStream() {
+  //
+}
+
+
+
 function updateGamePanel() {
   console.log(localStorage.getItem("teamInputTitle"));
   document.getElementById("teamInputTitle").innerHTML = localStorage.getItem("teamInputTitle");
