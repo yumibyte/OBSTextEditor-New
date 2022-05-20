@@ -18,6 +18,8 @@
 
     <!-- Custom styles for this template-->
     <link href="../css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
 
   </head>
 
@@ -59,14 +61,28 @@
                                 </div>
                                 <div class="row">
                                   <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <div class="dropdown mb-4">
+                                        <button class="btn btn-primary dropdown-toggle" type="button"
+                                            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false">
+                                            Player Name
+                                        </button>
+                                        <div class="dropdown-menu animated--fade-in"
+                                            aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" href="#">Action</a>
+                                            <a class="dropdown-item" href="#">Another action</a>
+                                            <a class="dropdown-item" href="#">Something else here</a>
+                                        </div>
+                                    </div>
 
-                                    <div class="h5 mb-0 text-gray-800">Player name</div>
+                                    <div class="row">
+                                        <span class="material-icons icon-size-small">filter_list</span>
+                                    </div>
+
 
                                   </div>
-                                  <div class="col-sm-6 mb-3 mb-sm-0">
 
-                                    <div class="h5 mb-0 text-gray-800">Player type</div>
-                                  </div>
+
                                 </div>
                                 <!-- dropdown-->
 
@@ -88,5 +104,16 @@
 
   </body>
   <script src="../scripts/GameBaseFunctionality.js"></script>
+
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="../vendor/jquery/jquery.min.js"></script>
+  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <!-- <script src="js/sb-admin-2.min.js"></script> -->
 
 </html>
