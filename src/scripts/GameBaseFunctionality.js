@@ -35,6 +35,15 @@ function generateStream() {
 }
 
 
+function generateTitle() {
+  if (document.getElementById('inputTitle') != null) {
+    console.log(document.getElementById('inputTitle').value);
+
+  }  
+}
+
+
+
 
 function updateGamePanel() {
   console.log(localStorage.getItem("teamInputTitle"));
