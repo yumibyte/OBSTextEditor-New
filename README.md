@@ -1,4 +1,9 @@
 # OBSTextEditor-New
+Note: if on Windows, run as admin
+## First time downloading the project
+```
+npm install
+```
 
 ## Setup the project
 ```
