@@ -40,47 +40,44 @@
                         <div class="col-lg-7">
                             <div class="p-5">
                                 <form class="user">
-                                    <!-- <div id="teamInputTitle" class="h3 mb-0 font-weight-bold text-gray-800">!</div> -->
                                   <div class="form-group row">
 
                                       <div class="mb-2">
-                                          <div id="" class="h3 mb-0 font-weight-bold text-gray-800">Opposing Team Name</div>
+                                          <div id="teamInputTitle" class="h3 mb-0 font-weight-bold text-gray-800">Opposing Team Name</div>
                                       </div>
 
                                   </div>
                                   <div class ="mb-2">
-                                    <input onclick="generateTitle()" class="form-control form-control-user" id="inputTitle"
+                                    <input onkeyup="generateTitle()" class="form-control form-control-user" id="inputTitle"
                                         placeholder="">
                                   </div>
 
 
                                   <div class="form-group row">
-                                    <!-- <div id="teamInputTitle" class="h3 mb-0 font-weight-bold text-gray-800">!</div> -->
-
                                       <div class="h3 mb-0 font-weight-bold text-gray-800">Season</div>
                                   </div>
 
                                   <div class="form-group">
                                       <div class="custom-control custom-radio col-lg-3">
-                                          <input type="radio" checked="checked" id="orgtype1" name="orgtype" class="custom-control-input">
+                                          <input type="radio" onclick = "updateSeason('Preseason')" checked="checked" id="orgtype1" name="orgtype" class="custom-control-input">
                                           <label class="custom-control-label" for="orgtype1">
                                               Preseason
                                           </label>
                                       </div>
                                       <div class="custom-control custom-radio col-lg-3">
-                                          <input type="radio" id="orgtype2" name="orgtype" class="custom-control-input">
+                                          <input type="radio" onclick = "updateSeason('MainSeason')" id="orgtype2" name="orgtype" class="custom-control-input">
                                           <label class="custom-control-label" for="orgtype2">
                                               MainSeason
                                           </label>
                                       </div>
                                       <div class="custom-control custom-radio col-lg-3">
-                                          <input type="radio" id="orgtype3" name="orgtype" class="custom-control-input">
+                                          <input type="radio" onclick = "updateSeason('Playoffs')" id="orgtype3" name="orgtype" class="custom-control-input">
                                           <label class="custom-control-label" for="orgtype3">
                                           Playoffs
                                           </label>
                                       </div>
                                       <div class="custom-control custom-radio col-lg-3">
-                                          <input type="radio" id="orgtype4" name="orgtype" class="custom-control-input">
+                                          <input type="radio" onclick = "updateSeason('Finals')" id="orgtype4" name="orgtype" class="custom-control-input">
                                           <label class="custom-control-label" for="orgtype4">
                                           Finals
                                           </label>
@@ -148,11 +145,10 @@
                           <div class="col-lg-7">
                               <div class="p-5">
                                   <form class="user">
-                                      <!-- <div id="teamInputTitle" class="h3 mb-0 font-weight-bold text-gray-800">!</div> -->
                                     <div class="form-group row">
                                       <div class="mb-2">
 
-                                          <div id="" class="h3 mb-0 font-weight-bold text-gray-800">Stream Preview</div>
+                                          <div class="h3 mb-0 font-weight-bold text-gray-800">Stream Preview</div>
                                       </div>
                                     </div>
 
@@ -160,7 +156,7 @@
 
                                     <div class="form-group">
 
-                                      <div class="h5 mb-0 font-weight-light text-gray-800">Stream Preview</div>
+                                      <div id="streamPreviewLabel"class="h5 mb-0 font-weight-light text-gray-800">Stream Preview</div>
                                     </div>
                                     <div class="h5 mb-0 font-weight-light text-gray-800">
 
