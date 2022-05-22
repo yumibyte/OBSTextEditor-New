@@ -48,12 +48,15 @@ function generateStream() {
 // generate title
 function generateTitle() {
   var inputTitle = document.getElementById('inputTitle').value;
-  var season = "";
+
+  if (localStorage.getItem('season') == null) {
+    localStorage.setItem('season', "");
+  }
 
   switch (localStorage.getItem("gameType")) {
 
     case "OW":
-      localStorage.setItem("title", "Oakmont Fenrir vs " + inputTitle + " | " + season + " PlayVS");
+      localStorage.setItem("title", "Oakmont Fenrir vs " + inputTitle + " | " + localStorage.getItem('season') + " | PlayVS");
       break;
 
     case "RL":
@@ -68,6 +71,12 @@ function generateTitle() {
   updateStreamPreview();
 }
 
+function updateSeason(inputSeason) {
+  localStorage.setItem("season", inputSeason);
+  generateTitle();
+}
+
+
 
 function updateGamePanel() {
   document.getElementById("teamInputTitle").innerHTML = localStorage.getItem("teamInputTitle");
@@ -76,7 +85,7 @@ function updateGamePanel() {
 
 function updateStreamPreview() {
   // add function to set all localStorage to an empty string?
-  document.getElementById("streamPreviewLabel").innerHTML = localStorage.getItem("title") + " " + localStorage.getItem("roster");
+  document.getElementById("streamPreviewLabel").innerHTML = localStorage.getItem("title") + "<br>" + localStorage.getItem("roster");
 }
 
 
