@@ -26,7 +26,7 @@ function navigateToGamePanel(gameType) {
       break;
     case "Chess":
 
-    localStorage.setItem("gamePanelTitle", "Chess");
+      localStorage.setItem("gamePanelTitle", "Chess");
       localStorage.setItem("teamInputTitle", "Player Name");
       break;
   }
@@ -76,11 +76,28 @@ function updateSeason(inputSeason) {
   generateTitle();
 }
 
+function updateRoster() {
+  console.log("test!");
+}
+
+function updatePlayerNameDropdown() {
+  var playerNameDropdown = document.getElementById("playerNameDropdown");
+  var example_array = {
+    ValueA : 'Text A',
+    ValueB : 'Text B',
+    ValueC : 'Text C'
+  };
+  for (index in example_array) {
+    playerNameDropdown.options[playerNameDropdown.options.length] = new Option(example_array[index], index);
+  }
+}
 
 
 function updateGamePanel() {
   document.getElementById("teamInputTitle").innerHTML = localStorage.getItem("teamInputTitle");
   document.getElementById("gamePanelTitle").innerHTML = localStorage.getItem("gamePanelTitle");
+  updatePlayerNameDropdown();
+
 }
 
 function updateStreamPreview() {
