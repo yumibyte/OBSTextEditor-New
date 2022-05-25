@@ -82,13 +82,24 @@ function updateRoster() {
 
 function updatePlayerNameDropdown() {
   var playerNameDropdown = document.getElementById("playerNameDropdown");
-  var example_array = {
-    ValueA : 'Text A',
-    ValueB : 'Text B',
-    ValueC : 'Text C'
-  };
-  for (index in example_array) {
-    playerNameDropdown.options[playerNameDropdown.options.length] = new Option(example_array[index], index);
+  var playerRoster = [
+    ["name", "type", 1],
+    ["name1", "type1", 1],
+    ["name2", "type2", 1]
+
+
+  ]
+
+  for (i in playerRoster) {
+
+    console.log(playerRoster[i][0]);
+
+    var opt = playerRoster[i][0];
+    var el = document.createElement("option");
+    el.textContent = opt;
+    el.value = opt;
+    playerNameDropdown.appendChild(el);
+    // playerNameDropdown.options[playerRoster.length] = new Option(playerRoster[index][0], index);
   }
 }
 
@@ -104,18 +115,3 @@ function updateStreamPreview() {
   // add function to set all localStorage to an empty string?
   document.getElementById("streamPreviewLabel").innerHTML = localStorage.getItem("title") + "<br>" + localStorage.getItem("roster");
 }
-
-
-// if (document.readyState === 'complete') {
-//   // The page is fully loaded
-// }
-// function setUpGamePanel() {
-//   console.log("2");
-//   if (document.readyState === 'complete') {
-//     // The page is fully loaded
-//     console.log(localStorage.getItem("teamInputTitle"));
-//     document.getElementById("teamInputTitle").innerHTML = localStorage.getItem("teamInputTitle");
-//     document.getElementById("gamePanelTitle").innerHTML = localStorage.getItem("gamePanelTitle");
-//   }
-//
-// }
