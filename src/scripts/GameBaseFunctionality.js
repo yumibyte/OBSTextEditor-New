@@ -80,26 +80,26 @@ function updateRoster() {
   console.log("test!");
 }
 
+function readCSV() {
+
+  
+}
+
 function updatePlayerNameDropdown() {
   var playerNameDropdown = document.getElementById("playerNameDropdown");
   var playerRoster = [
-    ["name", "type", 1],
-    ["name1", "type1", 1],
-    ["name2", "type2", 1]
-
-
+    ["Matthew Chance Lopez", "type", 1],
+    ["Mason Harder", "type1", 1],
+    ["Jordan Hopper", "type2", 1]
   ]
 
   for (i in playerRoster) {
-
-    console.log(playerRoster[i][0]);
 
     var opt = playerRoster[i][0];
     var el = document.createElement("option");
     el.textContent = opt;
     el.value = opt;
     playerNameDropdown.appendChild(el);
-    // playerNameDropdown.options[playerRoster.length] = new Option(playerRoster[index][0], index);
   }
 }
 
