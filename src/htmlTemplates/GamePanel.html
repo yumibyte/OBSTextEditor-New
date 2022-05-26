@@ -108,6 +108,12 @@
                                     </div>
 
 
+                                    <div id="upload_button">
+                                        <label>
+                                          <input type="file" ngf-select ng-model="new_files" ng-change="fs.uploadFiles(new_files)" multiple>
+                                          <span class="btn btn-primary">Upload .csv</span>
+                                        </label>
+                                    </div>
 
                                   <!-- end of dropdowns-->
                                   <div class="form-group row">

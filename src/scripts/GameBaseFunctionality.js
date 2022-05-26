@@ -1,4 +1,3 @@
-
 function navigateToGamePanel(gameType) {
   // set current game type for other functions
   localStorage.setItem("gameType", gameType);
@@ -71,18 +70,9 @@ function generateTitle() {
   updateStreamPreview();
 }
 
-function updateSeason(inputSeason) {
-  localStorage.setItem("season", inputSeason);
-  generateTitle();
-}
-
-function updateRoster() {
-  console.log("test!");
-}
-
 function readCSV() {
 
-  
+  console.log("hello");
 }
 
 function updatePlayerNameDropdown() {
@@ -114,4 +104,13 @@ function updateGamePanel() {
 function updateStreamPreview() {
   // add function to set all localStorage to an empty string?
   document.getElementById("streamPreviewLabel").innerHTML = localStorage.getItem("title") + "<br>" + localStorage.getItem("roster");
+}
+
+function updateSeason(inputSeason) {
+  localStorage.setItem("season", inputSeason);
+  generateTitle();
+}
+
+function updateRoster() {
+  console.log("test!");
 }

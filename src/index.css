@@ -73,3 +73,10 @@ body {
 .bottom-padding-lg {
   margin-bottom: 490px !important;
 }
+
+#upload_button {
+  display: inline-block;
+}
+#upload_button input[type=file] {
+  display:none;
+}
