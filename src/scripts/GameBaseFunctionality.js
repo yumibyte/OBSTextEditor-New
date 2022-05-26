@@ -26,7 +26,7 @@ function navigateToGamePanel(gameType) {
       break;
     case "Chess":
 
-    localStorage.setItem("gamePanelTitle", "Chess");
+      localStorage.setItem("gamePanelTitle", "Chess");
       localStorage.setItem("teamInputTitle", "Player Name");
       break;
   }
@@ -76,29 +76,42 @@ function updateSeason(inputSeason) {
   generateTitle();
 }
 
+function updateRoster() {
+  console.log("test!");
+}
+
+function updatePlayerNameDropdown() {
+  var playerNameDropdown = document.getElementById("playerNameDropdown");
+  var playerRoster = [
+    ["name", "type", 1],
+    ["name1", "type1", 1],
+    ["name2", "type2", 1]
+
+
+  ]
+
+  for (i in playerRoster) {
+
+    console.log(playerRoster[i][0]);
+
+    var opt = playerRoster[i][0];
+    var el = document.createElement("option");
+    el.textContent = opt;
+    el.value = opt;
+    playerNameDropdown.appendChild(el);
+    // playerNameDropdown.options[playerRoster.length] = new Option(playerRoster[index][0], index);
+  }
+}
 
 
 function updateGamePanel() {
   document.getElementById("teamInputTitle").innerHTML = localStorage.getItem("teamInputTitle");
   document.getElementById("gamePanelTitle").innerHTML = localStorage.getItem("gamePanelTitle");
+  updatePlayerNameDropdown();
+
 }
 
 function updateStreamPreview() {
   // add function to set all localStorage to an empty string?
   document.getElementById("streamPreviewLabel").innerHTML = localStorage.getItem("title") + "<br>" + localStorage.getItem("roster");
 }
-
-
-// if (document.readyState === 'complete') {
-//   // The page is fully loaded
-// }
-// function setUpGamePanel() {
-//   console.log("2");
-//   if (document.readyState === 'complete') {
-//     // The page is fully loaded
-//     console.log(localStorage.getItem("teamInputTitle"));
-//     document.getElementById("teamInputTitle").innerHTML = localStorage.getItem("teamInputTitle");
-//     document.getElementById("gamePanelTitle").innerHTML = localStorage.getItem("gamePanelTitle");
-//   }
-//
-// }
