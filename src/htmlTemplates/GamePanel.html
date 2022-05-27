@@ -20,6 +20,7 @@
     <link href="../css/sb-admin-2.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
+    <script src="https://d3js.org/d3.v4.min.js"></script>
 
   </head>
 
@@ -103,11 +104,17 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <div class="h6 mb-0 text-gray-800">Player Name</div>
-                                        <select id="playerNameDropdown" class="btn btn-primary dropdown-toggle"></select>
+                                        <div class="h6 mb-0 text-gray-800">Player Type</div>
+                                        <select id="playerTypeDropdown" class="btn btn-primary dropdown-toggle"></select>
                                     </div>
 
 
+                                    <div class ="mb-2">
+                                      <input id="filePathInput" class="form-control form-control-user" placeholder="File name (with extension)">
+                                    </div>
+
+                                    <!-- <input type="file" id="fileUpload"> -->
+                                    <span id="upload" value="Upload" onclick="readCSV()" class="btn btn-primary">Upload</span>
 
                                   <!-- end of dropdowns-->
                                   <div class="form-group row">

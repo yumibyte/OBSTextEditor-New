@@ -1,4 +1,3 @@
-
 function navigateToGamePanel(gameType) {
   // set current game type for other functions
   localStorage.setItem("gameType", gameType);
@@ -71,35 +70,49 @@ function generateTitle() {
   updateStreamPreview();
 }
 
-function updateSeason(inputSeason) {
-  localStorage.setItem("season", inputSeason);
-  generateTitle();
-}
-
-function updateRoster() {
-  console.log("test!");
-}
-
 function readCSV() {
 
-  
+  // read file
+  var fileUpload = document.getElementById("filePathInput");
+  var filePath = "../" + fileUpload.value;
+  console.log(filePath);
+  d3.tsv(filePath, function (d) {
+
+    for (var i = 0; i < d.length; i++) {
+      d[i]["Display"] = "test";
+      delete d['columns'];
+    }
+    // Put the object into storage
+    localStorage.setItem('currentRoster', JSON.stringify(d));
+  });
+
 }
 
+
+
 function updatePlayerNameDropdown() {
+
   var playerNameDropdown = document.getElementById("playerNameDropdown");
-  var playerRoster = [
-    ["Matthew Chance Lopez", "type", 1],
-    ["Mason Harder", "type1", 1],
-    ["Jordan Hopper", "type2", 1]
-  ]
+  var playerTypeDropdown = document.getElementById("playerTypeDropdown");
 
-  for (i in playerRoster) {
+  // Retrieve the object from storage
+  var retrievedObject = localStorage.getItem('currentRoster');
+  var currentRoster = JSON.parse(retrievedObject);
 
-    var opt = playerRoster[i][0];
+  for (i in currentRoster) {
+
+    var opt = currentRoster[i]['Last, First'];
     var el = document.createElement("option");
     el.textContent = opt;
     el.value = opt;
     playerNameDropdown.appendChild(el);
+
+    var opt = currentRoster[i]['Team Assignment'];
+    var el = document.createElement("option");
+    el.textContent = opt;
+    el.value = opt;
+    playerTypeDropdown.appendChild(el);
+
   }
 }
 
@@ -114,4 +127,13 @@ function updateGamePanel() {
 function updateStreamPreview() {
   // add function to set all localStorage to an empty string?
   document.getElementById("streamPreviewLabel").innerHTML = localStorage.getItem("title") + "<br>" + localStorage.getItem("roster");
+}
+
+function updateSeason(inputSeason) {
+  localStorage.setItem("season", inputSeason);
+  generateTitle();
+}
+
+function updateRoster() {
+  console.log("test!");
 }
