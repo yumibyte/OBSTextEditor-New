@@ -91,19 +91,28 @@ function readCSV() {
 
 
 function updatePlayerNameDropdown() {
+
   var playerNameDropdown = document.getElementById("playerNameDropdown");
+  var playerTypeDropdown = document.getElementById("playerTypeDropdown");
 
   // Retrieve the object from storage
   var retrievedObject = localStorage.getItem('currentRoster');
-  console.log(JSON.parse(retrievedObject));
+  var currentRoster = JSON.parse(retrievedObject);
 
-  for (i in playerRoster) {
+  for (i in currentRoster) {
 
-    var opt = playerRoster[i][0];
+    var opt = currentRoster[i]['Last, First'];
     var el = document.createElement("option");
     el.textContent = opt;
     el.value = opt;
     playerNameDropdown.appendChild(el);
+
+    var opt = currentRoster[i]['Team Assignment'];
+    var el = document.createElement("option");
+    el.textContent = opt;
+    el.value = opt;
+    playerTypeDropdown.appendChild(el);
+
   }
 }
 
