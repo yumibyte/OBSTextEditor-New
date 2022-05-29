@@ -89,14 +89,37 @@
                                   <div class="form-group row">
 
                                       <div class="h3 mb-0 font-weight-bold text-gray-800">Roster Selection</div>
-                                      <div class="left-padding">
+                                      <!-- <div class="left-padding">
 
                                           <a href="#" class="btn btn-primary btn-circle">
-                                              <span onclick="updateFilter()" class="material-icons icon-size-small">filter_list</span>
+                                              <span onclick="displayFilter()" class="dropbtn material-icons icon-size-small">filter_list</span>
 
                                           </a>
+                                      </div> -->
+
+                                      <div class="dropdown">
+                                        <a href="#" class="btn btn-primary btn-circle">
+                                            <span onclick="displayFilter()" class="dropbtn material-icons icon-size-small">filter_list</span>
+
+                                        </a>
+                                        <!-- <button onclick="displayFilter()" class="dropbtn">Dropdown</button> -->
+
+                                        <select onclick="processFilter()" id="filterDropdown" class="dropdown-content" multiple>
+                                          <option value="Alphabetically">Alphabetically</option>
+                                          <option value="Player Assignment">Player Assignment</option>
+                                        </select>
                                       </div>
 
+                                      <!-- <div class="dropdown">
+                                        <button onclick="displayFilter()" class="dropbtn">Dropdown</button>
+
+                                        <select onclick="processFilter()" id="filterDropdown" class="dropdown-content" multiple>
+                                          <option value="volvo">Volvo</option>
+                                          <option value="saab">Saab</option>
+                                          <option value="opel">Opel</option>
+                                          <option value="audi">Audi</option>
+                                        </select>
+                                      </div> -->
 
                                   </div>
 
@@ -125,17 +148,6 @@
                                   </div>
                                 </form>
 
-                                <div class="dropdown">
-                                  <button onclick="displayFilter()" class="dropbtn">Dropdown</button>
-
-                                  <select onclick="processFilter()" id="filterDropdown" class="dropdown-content" multiple>
-                                    <option value="volvo">Volvo</option>
-                                    <option value="saab">Saab</option>
-                                    <option value="opel">Opel</option>
-                                    <option value="audi">Audi</option>
-                                  </select>
-
-                                </div>
 
 
 
