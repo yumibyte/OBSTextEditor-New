@@ -2,6 +2,9 @@
 <html>
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
     <title>OBS Text Editor</title>
     <link
       rel="stylesheet"
@@ -89,37 +92,17 @@
                                   <div class="form-group row">
 
                                       <div class="h3 mb-0 font-weight-bold text-gray-800">Roster Selection</div>
-                                      <!-- <div class="left-padding">
-
-                                          <a href="#" class="btn btn-primary btn-circle">
-                                              <span onclick="displayFilter()" class="dropbtn material-icons icon-size-small">filter_list</span>
-
-                                          </a>
-                                      </div> -->
-
                                       <div class="dropdown">
                                         <a href="#" class="btn btn-primary btn-circle">
                                             <span onclick="displayFilter()" class="dropbtn material-icons icon-size-small">filter_list</span>
 
                                         </a>
-                                        <!-- <button onclick="displayFilter()" class="dropbtn">Dropdown</button> -->
 
                                         <select onclick="processFilter()" id="filterDropdown" class="dropdown-content" multiple>
                                           <option value="Alphabetically">Alphabetically</option>
-                                          <option value="Player Assignment">Player Assignment</option>
+                                          <option value="Team Assignment">Team Assignment</option>
                                         </select>
                                       </div>
-
-                                      <!-- <div class="dropdown">
-                                        <button onclick="displayFilter()" class="dropbtn">Dropdown</button>
-
-                                        <select onclick="processFilter()" id="filterDropdown" class="dropdown-content" multiple>
-                                          <option value="volvo">Volvo</option>
-                                          <option value="saab">Saab</option>
-                                          <option value="opel">Opel</option>
-                                          <option value="audi">Audi</option>
-                                        </select>
-                                      </div> -->
 
                                   </div>
 
@@ -140,7 +123,9 @@
                                     </div>
 
                                     <!-- <input type="file" id="fileUpload"> -->
-                                    <span id="upload" value="Upload" onclick="readCSV()" class="btn btn-primary">Upload</span>
+                                    <span id="upload" value="Upload" onclick="readCSV();window.location.reload()" class="btn btn-primary">Upload</span>
+
+                                    <!-- <span id="upload" value="Upload" onclick="window.location.reload()" class="btn btn-primary">Update</span> -->
 
                                   <!-- end of dropdowns-->
                                   <div class="form-group row">
@@ -209,6 +194,7 @@
 
   </body>
   <script src="../scripts/GameBaseFunctionality.js"></script>
+  <!-- <script>document.write('<script src="../scripts/GameBaseFunctionality.js?dev=' + Math.floor(Math.random() * 100) + '"\><\/script>');</script> -->
 
 
   <!-- Bootstrap core JavaScript-->
