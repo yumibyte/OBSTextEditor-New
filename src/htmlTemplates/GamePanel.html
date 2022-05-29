@@ -92,9 +92,12 @@
                                       <div class="left-padding">
 
                                           <a href="#" class="btn btn-primary btn-circle">
-                                              <span onclick="filterSelected()" class="material-icons icon-size-small">filter_list</span>
+                                              <span onclick="updateFilter()" class="material-icons icon-size-small">filter_list</span>
+
                                           </a>
                                       </div>
+
+
                                   </div>
 
 
@@ -121,6 +124,21 @@
                                     <a onclick="clearRoster()" class="btn btn-secondary" href="../index.html">Clear Roster</a>
                                   </div>
                                 </form>
+
+                                <div class="dropdown">
+                                  <button onclick="displayFilter()" class="dropbtn">Dropdown</button>
+
+                                  <select onclick="processFilter()" id="filterDropdown" class="dropdown-content" multiple>
+                                    <option value="volvo">Volvo</option>
+                                    <option value="saab">Saab</option>
+                                    <option value="opel">Opel</option>
+                                    <option value="audi">Audi</option>
+                                  </select>
+
+                                </div>
+
+
+
                             </div>
                         </div>
                       </div>

@@ -31,9 +31,38 @@ function navigateToGamePanel(gameType) {
   }
 }
 
-function filterSelected() {
-  //
+function displayFilter() {
+  document.getElementById("filterDropdown").classList.toggle("show");
 }
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+
+function processFilter() {
+  document.getElementById('filterDropdown').onclick = function() {
+    var selected = [];
+    for (var option of document.getElementById('filterDropdown').options)
+    {
+        if (option.selected) {
+            selected.push(option.value);
+        }
+    }
+    alert(selected);
+}
+}
+
+
 
 function clearRoster() {
   //
@@ -99,6 +128,7 @@ function updatePlayerNameDropdown() {
   var retrievedObject = localStorage.getItem('currentRoster');
   var currentRoster = JSON.parse(retrievedObject);
 
+  // append to roster
   for (i in currentRoster) {
 
     var opt = currentRoster[i]['Last, First'];
@@ -112,7 +142,6 @@ function updatePlayerNameDropdown() {
     el.textContent = opt;
     el.value = opt;
     playerTypeDropdown.appendChild(el);
-
   }
 }
 
