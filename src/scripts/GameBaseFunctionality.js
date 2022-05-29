@@ -31,9 +31,84 @@ function navigateToGamePanel(gameType) {
   }
 }
 
-function filterSelected() {
-  //
+function displayFilter() {
+  document.getElementById("filterDropdown").classList.toggle("show");
 }
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+
+function processFilter() {
+  document.getElementById('filterDropdown').onclick = function() {
+    var selected = [];
+    for (var option of document.getElementById('filterDropdown').options) {
+        if (option.selected) {
+            selected.push(option.value);
+        }
+    }
+
+    // alphabetical filter
+    if (selected.includes('Alphabetically')) {
+
+      // sort array of names
+      var sorted = [];
+
+      var currentRoster = localStorage.getItem('currentRoster');
+      currentRoster = JSON.parse(currentRoster);
+
+
+      for(var i in currentRoster) {
+          sorted[i] = currentRoster[i]['Last, First'];
+      }
+      sorted.sort();
+
+      var sortedRoster = currentRoster;
+      // modify dictionary to be in correct order
+      for (var j in sorted) {
+        sortedRoster[j]['Last, First'] = sorted[j];
+
+        for (var k in currentRoster) {
+          if (currentRoster[k]['Last, First'] == sortedRoster[j]['Last, First']) {
+
+            sortedRoster[j]['Team Assignment'] = currentRoster[k]['Team Assignment'];
+            sortedRoster[j]['Display'] = currentRoster[k]['Display'];
+          }
+        }
+      }
+      localStorage.setItem('currentRoster', JSON.stringify(sortedRoster));
+      updatePlayerDropdown(false);
+
+
+    }
+
+
+
+    if (selected.includes('Team Assignment')) {
+    }
+  }
+
+
+
+}
+
+function refreshPage() {
+  document.location.reload();
+}
+
+
+
+
 
 function clearRoster() {
   //
@@ -77,20 +152,26 @@ function readCSV() {
   var filePath = "../" + fileUpload.value;
   console.log(filePath);
   d3.tsv(filePath, function (d) {
-
     for (var i = 0; i < d.length; i++) {
-      d[i]["Display"] = "test";
-      delete d['columns'];
+      d[i]['Display'] = "1";
+
+      // delete d['columns'];
     }
+    // deleted function to remove columns?
     // Put the object into storage
+    console.log(d)
+
     localStorage.setItem('currentRoster', JSON.stringify(d));
   });
+
+  updatePlayerDropdown(false);
+
 
 }
 
 
 
-function updatePlayerNameDropdown() {
+function updatePlayerDropdown(isRefreshed) {
 
   var playerNameDropdown = document.getElementById("playerNameDropdown");
   var playerTypeDropdown = document.getElementById("playerTypeDropdown");
@@ -99,28 +180,38 @@ function updatePlayerNameDropdown() {
   var retrievedObject = localStorage.getItem('currentRoster');
   var currentRoster = JSON.parse(retrievedObject);
 
+  // append to roster
   for (i in currentRoster) {
 
-    var opt = currentRoster[i]['Last, First'];
-    var el = document.createElement("option");
-    el.textContent = opt;
-    el.value = opt;
-    playerNameDropdown.appendChild(el);
 
-    var opt = currentRoster[i]['Team Assignment'];
-    var el = document.createElement("option");
-    el.textContent = opt;
-    el.value = opt;
-    playerTypeDropdown.appendChild(el);
+    if (currentRoster[i]['Display']) {
+      var opt = currentRoster[i]['Last, First'];
+      var el = document.createElement("option");
+      el.textContent = opt;
+      el.value = opt;
+      playerNameDropdown.appendChild(el);
+
+      var opt = currentRoster[i]['Team Assignment'];
+      var el = document.createElement("option");
+      el.textContent = opt;
+      el.value = opt;
+      playerTypeDropdown.appendChild(el);
+
+    }
+  }
+  console.log("updated!");
+  if (!isRefreshed) {
+    window.location.reload()
 
   }
+
 }
 
 
 function updateGamePanel() {
   document.getElementById("teamInputTitle").innerHTML = localStorage.getItem("teamInputTitle");
   document.getElementById("gamePanelTitle").innerHTML = localStorage.getItem("gamePanelTitle");
-  updatePlayerNameDropdown();
+  updatePlayerDropdown(true);
 
 }
 
