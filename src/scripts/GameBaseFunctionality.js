@@ -156,8 +156,9 @@ function refreshPage() {
 
 
 function clearRoster() {
-  //
-  console.log(localStorage.getItem('currentRoster'));
+
+  localStorage.setItem('roster', "");
+  updateStreamPreview();
 
 }
 
