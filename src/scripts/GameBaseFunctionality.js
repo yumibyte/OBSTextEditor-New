@@ -93,9 +93,55 @@ function processFilter() {
 
     }
 
-
-
     if (selected.includes('Team Assignment')) {
+      var inputTeamAssignment = localStorage.getItem('gameType');
+
+      // swap team assignment to proper formatting on spreadsheet
+      switch (inputTeamAssignment) {
+        case "OW":
+          inputTeamAssignment = "OW (Fenrir)";
+          break;
+
+        case "LoL":
+          inputTeamAssignment = "LoL (Berserkers)";
+          break;
+
+        case "Chess":
+          inputTeamAssignment = "Chess";
+          break;
+
+        case "RL":
+          inputTeamAssignment = "RL (Ragnarok)";
+          break;
+
+        case "SSBU":
+          inputTeamAssignment = "SSBU (Drakkar)";
+          break;
+      }
+
+      var currentRoster = localStorage.getItem('currentRoster');
+      currentRoster = JSON.parse(currentRoster);
+      // change display status for all arrays
+      for (var m in currentRoster) {
+        if (!(currentRoster[m]['Team Assignment'] == inputTeamAssignment)) {
+          currentRoster[m]['Display'] = false;
+        }
+      }
+
+      localStorage.setItem('currentRoster', JSON.stringify(currentRoster));
+      updatePlayerDropdown(false);
+    }
+
+    if (selected.includes('Remove Filters')) {
+      var currentRoster = localStorage.getItem('currentRoster');
+      currentRoster = JSON.parse(currentRoster);
+
+      for (var l in currentRoster) {
+        currentRoster[l]['Display'] = true;
+      }
+      localStorage.setItem('currentRoster', JSON.stringify(currentRoster));
+      updatePlayerDropdown(false);
+
     }
   }
 
@@ -113,6 +159,8 @@ function refreshPage() {
 
 function clearRoster() {
   //
+  console.log(localStorage.getItem('currentRoster'));
+
 }
 
 function generateStream() {
@@ -130,10 +178,10 @@ function generateTitle() {
 
   switch (localStorage.getItem("gameType")) {
 
+// todo
     case "OW":
       localStorage.setItem("title", "Oakmont Fenrir vs " + inputTitle + " | " + localStorage.getItem('season') + " | PlayVS");
       break;
-
     case "RL":
       break;
     case "LoL":
@@ -146,21 +194,19 @@ function generateTitle() {
   updateStreamPreview();
 }
 
-function readCSV() {
+function readTSV() {
 
   // read file
   var fileUpload = document.getElementById("filePathInput");
   var filePath = "../" + fileUpload.value;
-  console.log(filePath);
   d3.tsv(filePath, function (d) {
     for (var i = 0; i < d.length; i++) {
-      d[i]['Display'] = "1";
+      d[i]['Display'] = true;
 
       // delete d['columns'];
     }
     // deleted function to remove columns?
     // Put the object into storage
-    console.log(d)
 
     localStorage.setItem('currentRoster', JSON.stringify(d));
   });
@@ -184,23 +230,14 @@ function updatePlayerDropdown(isRefreshed) {
   // append to roster
   for (i in currentRoster) {
 
-
     if (currentRoster[i]['Display']) {
       var opt = currentRoster[i]['Last, First'];
       var el = document.createElement("option");
       el.textContent = opt;
       el.value = opt;
       playerNameDropdown.appendChild(el);
-
-      var opt = currentRoster[i]['Team Assignment'];
-      var el = document.createElement("option");
-      el.textContent = opt;
-      el.value = opt;
-      playerTypeDropdown.appendChild(el);
-
     }
   }
-  console.log("updated!");
   if (!isRefreshed) {
     window.location.reload()
 
@@ -215,7 +252,7 @@ function addPlayer() {
   // check if player type exists? TODO
   var selectedPlayerType = document.getElementById('playerTypeDropdown').value;
 
-  var rosterAppended = localStorage.getItem('roster') + "<br>- " + selectedPlayerName + " - " + selectedPlayerType;
+  var rosterAppended = localStorage.getItem('roster') + "<br>- " + selectedPlayerName + ": " + selectedPlayerType;
   localStorage.setItem('roster', rosterAppended);
 
   updateStreamPreview();
@@ -233,6 +270,7 @@ function updateGamePanel() {
 function updateStreamPreview() {
   // add function to set all localStorage to an empty string?
   document.getElementById("streamPreviewLabel").innerHTML = "Title: " + localStorage.getItem("title") + "<br><br>Roster:" + localStorage.getItem("roster");
+
 }
 
 function updateSeason(inputSeason) {

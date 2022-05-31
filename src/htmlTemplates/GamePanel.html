@@ -100,6 +100,8 @@
                                         <select onclick="processFilter()" id="filterDropdown" class="dropdown-content" multiple>
                                           <option value="Alphabetically">Alphabetically</option>
                                           <option value="Team Assignment">Team Assignment</option>
+                                          <option value="Remove Filters">Remove Filters</option>
+
                                         </select>
                                       </div>
 
@@ -113,23 +115,29 @@
 
                                     <div class="form-group">
                                         <div class="h6 mb-0 text-gray-800">Player Type</div>
-                                        <select id="playerTypeDropdown" class="btn btn-primary dropdown-toggle"></select>
+                                        <select id="playerTypeDropdown" class="btn btn-primary dropdown-toggle">
+                                          <option value="Top">Top</option>
+                                          <option value="Middle">Middle</option>
+                                          <option value="Jungle">Jungle</option>
+                                          <option value="ADC">ADC</option>
+                                          <option value="Support">Support</option>
+                                        </select>
+
                                     </div>
 
                                     <div class="row col-lg-8 content-spacer">
 
                                           <span id="addPlayerButton" onclick="addPlayer()" class="btn btn-primary">Add Player</span>
-                                          <a onclick="clearRoster()" class="btn btn-secondary" href="../index.html">Clear Roster</a>
+                                          <a onclick="clearRoster()" class="btn btn-secondary" >Clear Roster</a>
 
                                     </div>
 
-                                    <!-- code to take a file input, tsv
                                     <div class ="mb-2">
                                       <input id="filePathInput" class="form-control form-control-user" placeholder="File name (with extension)">
                                     </div>
 
-                                    <span id="upload" value="Upload" onclick="readCSV();window.location.reload()" class="btn btn-primary">Upload</span>
-                                  -->
+                                    <span id="upload" value="Upload" onclick="readTSV();window.location.reload()" class="btn btn-primary">Upload</span>
+
 
                                   <!-- end of dropdowns-->
 
