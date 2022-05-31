@@ -179,15 +179,19 @@ function generateTitle() {
 
 // todo
     case "OW":
-      localStorage.setItem("title", "Oakmont Fenrir vs " + inputTitle + " | " + localStorage.getItem('season') + " | PlayVS");
+      localStorage.setItem("title", "Oakmont Fenrir vs " + inputTitle + " | " + localStorage.getItem('season') + " | PlayVS                       ");
       break;
     case "RL":
+      localStorage.setItem("title", "Oakmont Ragnarok vs " + inputTitle + " | " + localStorage.getItem('season') + " | Varsity Rocket League                        ");
       break;
     case "LoL":
+      localStorage.setItem("title", "Oakmont Berserkers vs " + inputTitle + " | " + localStorage.getItem('season') + " | Varsity LoL                       ");
       break;
     case "SSBU":
+      localStorage.setItem("title", inputTitle + " | Oakmont Drakkar | " + localStorage.getItem('season') + " | Varsity SSBU                        ")
       break;
     case "Chess":
+      localStorage.setItem("title", inputTitle + " | Chess | " + localStorage.getItem('season') + " | " + "Oakmont Esports                        ")
       break;
   }
   updateStreamPreview();
