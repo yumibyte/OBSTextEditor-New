@@ -21,10 +21,14 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
 
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+
   </head>
 
   <body>
     <div>
+      <a class="button is-warning" href="../index.html">Back</a>
+
       <center><div id="" class="h1 mb-0 font-weight-bold color-black">Configuration Panel</div></center>
 
       <center>
@@ -41,13 +45,16 @@
                               <div class="col-lg-7">
                                   <div class="p-5">
 
-                                      <form class="user">
-                                        <a href="#" class="btn btn-primary btn-icon-split btn-lg">
-                                            <span class="text-white-50">
-                                                <i class="fas fa-flag"></i>
-                                            </span>
-                                            <!-- <span class="text">Modify title formatting</span> -->
-                                        </a>
+                                      <form class="form-group user row">
+
+                                            <div class="h3 mb-0 font-weight-bold text-gray-800">Upload New Roster</div>
+
+                                            <div class="row">
+
+                                              <input id="filePathInput" class="form-control form-control-user" placeholder="File name (with extension)">
+
+                                              <span id="upload" value="Upload" onclick="readTSV();window.location.reload()" class="btn btn-primary">Upload</span>
+                                            </div>
                                       </form>
 
                                   </div>

@@ -2,6 +2,10 @@ function navigateToGamePanel(gameType) {
   // set current game type for other functions
   localStorage.setItem("gameType", gameType);
   localStorage.setItem("roster", "");
+
+
+  // determine title
+
   switch(gameType) {
 
 
@@ -144,17 +148,11 @@ function processFilter() {
 
     }
   }
-
-
-
 }
 
 function refreshPage() {
   document.location.reload();
 }
-
-
-
 
 
 function clearRoster() {
@@ -213,6 +211,11 @@ function readTSV() {
 
   updatePlayerDropdown(false);
 
+  let inputRosterRow = document.getElementById("inputRosterRow");
+  inputRosterRow.style.display = "none";
+
+
+
 
 }
 
@@ -232,6 +235,7 @@ function updatePlayerDropdown(isRefreshed) {
 
     if (currentRoster[i]['Display']) {
       var opt = currentRoster[i]['Last, First'];
+      console.log(opt);
       var el = document.createElement("option");
       el.textContent = opt;
       el.value = opt;
@@ -263,6 +267,11 @@ function addPlayer() {
 function updateGamePanel() {
   document.getElementById("teamInputTitle").innerHTML = localStorage.getItem("teamInputTitle");
   document.getElementById("gamePanelTitle").innerHTML = localStorage.getItem("gamePanelTitle");
+
+  var inputRosterRow = document.getElementById("inputRosterRow");
+  inputRosterRow.style.display = "none";
+
+
   updatePlayerDropdown(true);
 
 }
@@ -278,6 +287,9 @@ function updateSeason(inputSeason) {
   generateTitle();
 }
 
-function updateRoster() {
-  console.log("test!");
+function addNewRoster() {
+    console.log("add");
+    let inputRosterRow = document.getElementById("inputRosterRow");
+    inputRosterRow.style.display = "block";
+
 }

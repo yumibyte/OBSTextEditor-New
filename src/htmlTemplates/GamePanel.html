@@ -11,6 +11,7 @@
       href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css"
     />
     <link rel="stylesheet" href="../index.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 
 
     <!-- Custom fonts for this template-->
@@ -28,6 +29,8 @@
   </head>
 
   <body class="content" onload="updateGamePanel()">
+
+
       <a class="button is-warning" href="../index.html">Back</a>
 
       <center><div id="gamePanelTitle" class="h1 mb-0 font-weight-bold color-black">Game Panel</div></center>
@@ -92,6 +95,9 @@
                                   <div class="form-group row">
 
                                       <div class="h3 mb-0 font-weight-bold text-gray-800">Roster Selection</div>
+
+
+                                      <!-- filter -->
                                       <div class="dropdown">
                                         <a href="#" class="btn btn-primary btn-circle">
                                             <span onclick="displayFilter()" class="dropbtn material-icons icon-size-small">filter_list</span>
@@ -103,6 +109,22 @@
                                           <option value="Remove Filters">Remove Filters</option>
 
                                         </select>
+                                      </div>
+
+                                      <!-- add new roster -->
+
+                                      <a href="#" class="btn btn-primary btn-circle">
+                                          <span onclick="addNewRoster()" class="filter-btn dropbtn material-icons icon-size-small">add</span>
+                                      </a>
+
+
+
+
+                                      <div id="inputRosterRow" class="row">
+
+                                        <input id="filePathInput" class="form-control form-control-user" placeholder="File name (with extension)">
+
+                                        <span id="upload" value="Upload" onclick="readTSV();window.location.reload()" class="btn btn-primary">Upload</span>
                                       </div>
 
                                   </div>
@@ -131,12 +153,6 @@
                                           <a onclick="clearRoster()" class="btn btn-secondary" >Clear Roster</a>
 
                                     </div>
-
-                                    <div class ="mb-2">
-                                      <input id="filePathInput" class="form-control form-control-user" placeholder="File name (with extension)">
-                                    </div>
-
-                                    <span id="upload" value="Upload" onclick="readTSV();window.location.reload()" class="btn btn-primary">Upload</span>
 
 
                                   <!-- end of dropdowns-->
@@ -198,6 +214,8 @@
                 </div>
               </div>
     </div>
+
+
 
 
 
