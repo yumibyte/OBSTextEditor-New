@@ -1,6 +1,7 @@
 function navigateToGamePanel(gameType) {
   // set current game type for other functions
   localStorage.setItem("gameType", gameType);
+  localStorage.setItem("roster", "");
   switch(gameType) {
 
 
@@ -207,6 +208,20 @@ function updatePlayerDropdown(isRefreshed) {
 
 }
 
+function addPlayer() {
+  // add player to Roster
+
+  var selectedPlayerName = document.getElementById('playerNameDropdown').value;
+  // check if player type exists? TODO
+  var selectedPlayerType = document.getElementById('playerTypeDropdown').value;
+
+  var rosterAppended = localStorage.getItem('roster') + "<br>- " + selectedPlayerName + " - " + selectedPlayerType;
+  localStorage.setItem('roster', rosterAppended);
+
+  updateStreamPreview();
+
+}
+
 
 function updateGamePanel() {
   document.getElementById("teamInputTitle").innerHTML = localStorage.getItem("teamInputTitle");
@@ -217,7 +232,7 @@ function updateGamePanel() {
 
 function updateStreamPreview() {
   // add function to set all localStorage to an empty string?
-  document.getElementById("streamPreviewLabel").innerHTML = localStorage.getItem("title") + "<br>" + localStorage.getItem("roster");
+  document.getElementById("streamPreviewLabel").innerHTML = "Title: " + localStorage.getItem("title") + "<br><br>Roster:" + localStorage.getItem("roster");
 }
 
 function updateSeason(inputSeason) {

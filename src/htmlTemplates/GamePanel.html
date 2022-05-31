@@ -95,7 +95,6 @@
                                       <div class="dropdown">
                                         <a href="#" class="btn btn-primary btn-circle">
                                             <span onclick="displayFilter()" class="dropbtn material-icons icon-size-small">filter_list</span>
-
                                         </a>
 
                                         <select onclick="processFilter()" id="filterDropdown" class="dropdown-content" multiple>
@@ -117,20 +116,23 @@
                                         <select id="playerTypeDropdown" class="btn btn-primary dropdown-toggle"></select>
                                     </div>
 
+                                    <div class="row col-lg-8 content-spacer">
 
+                                          <span id="addPlayerButton" onclick="addPlayer()" class="btn btn-primary">Add Player</span>
+                                          <a onclick="clearRoster()" class="btn btn-secondary" href="../index.html">Clear Roster</a>
+
+                                    </div>
+
+                                    <!-- code to take a file input, tsv
                                     <div class ="mb-2">
                                       <input id="filePathInput" class="form-control form-control-user" placeholder="File name (with extension)">
                                     </div>
 
-                                    <!-- <input type="file" id="fileUpload"> -->
                                     <span id="upload" value="Upload" onclick="readCSV();window.location.reload()" class="btn btn-primary">Upload</span>
-
-                                    <!-- <span id="upload" value="Upload" onclick="window.location.reload()" class="btn btn-primary">Update</span> -->
+                                  -->
 
                                   <!-- end of dropdowns-->
-                                  <div class="form-group row">
-                                    <a onclick="clearRoster()" class="btn btn-secondary" href="../index.html">Clear Roster</a>
-                                  </div>
+
                                 </form>
 
 
