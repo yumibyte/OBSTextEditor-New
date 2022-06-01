@@ -203,6 +203,34 @@ function generateStream() {
 
   if (localStorage.getItem('gameType') == "LoL") {
 
+    var rosterArray = JSON.parse(localStorage.getItem("rosterArray"));
+    var currentRoster = JSON.parse(localStorage.getItem("currentRoster"));
+    for (var n in rosterArray) {
+
+      console.log(rosterArray[n]["Last, First"]);
+
+      // search for name in main roster
+
+      for (var o in currentRoster) {
+        if (currentRoster[o]["Last, First"] == rosterArray[n]["Last, First"]) {
+
+          // change appropriate card
+
+          var playerTypeCard = rosterArray[n]["Player Type"];
+
+          if (currentRoster[o]["Mobalytics Weblink"]) {
+            document.getElementById(playerTypeCard).src = currentRoster[o]["Mobalytics Weblink"];
+          } else {
+            document.getElementById(playerTypeCard).src = "../htmlTemplates/NoCard.html";
+
+          }
+
+          // switch (rosterArray[n]["Player Type"]) {
+          //
+          // }
+        }
+      }
+    }
   }
 
 }
@@ -305,8 +333,8 @@ function addPlayer() {
 
   // add player names to list for parsing for mobalytics if necessary
   var playerArray = {
-    playerName: selectedPlayerName,
-    playerType: selectedPlayerType,
+    "Last, First": selectedPlayerName,
+    "Player Type": selectedPlayerType,
   };
 
   var rosterArray = JSON.parse(localStorage.getItem("rosterArray") || "[]");
