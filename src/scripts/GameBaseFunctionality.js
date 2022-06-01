@@ -3,6 +3,9 @@ function navigateToGamePanel(gameType) {
   localStorage.setItem("gameType", gameType);
   localStorage.setItem("roster", "");
 
+  var initArray = [];
+  localStorage.setItem("rosterArray", JSON.stringify(initArray));
+
   // initialize all text files
   localStorage.setItem("titleTxt", "title.txt");
   localStorage.setItem("rosterTxt", "roster.txt");
@@ -163,32 +166,89 @@ function refreshPage() {
 function clearRoster() {
 
   localStorage.setItem('roster', "");
+  var initArray = [];
+
+  localStorage.setItem('rosterArray', JSON.stringify(initArray));
+
   updateStreamPreview();
 
 }
 
+function updateMobalyticsCard(playerType, mobalyticsLink) {
 
-// function writeTextFile(filepath, output) {
+  var fs = require('fs');
+  const path = require('path');
 
-  // var mainExFlData = new File([""], filepath);
-  // mainExFlData.open("w"); //
-  // mainExFlData.writeln(output);
-  // mainExFlData.close();
-// }
+  var htmlContent = '<iframe id="" src="' + mobalyticsLink + '"width="300" height="300"></iframe>';
+
+  // update title of stream
+  var filePath = path.join(__dirname,'..', 'OBSLocalFiles', playerType + ".html");
+  fs.writeFile(filePath, htmlContent, (err) => {
+      if (err) throw err;
+  })
+
+}
+
 
 function generateStream() {
 
-  console.log("ran!");
   const fs = require('fs');
   const path = require('path');
 
-
-  // var renderer = require('./fs.js');
-    // update title of stream
-  var filePath = path.join(__dirname,'..', 'OBSLocalFiles', 'TestText.txt');
+  // update title of stream
+  var filePath = path.join(__dirname,'..', 'OBSLocalFiles', localStorage.getItem("titleTxt"));
   fs.writeFile(filePath, localStorage.getItem("title"), (err) => {
       if (err) throw err;
   })
+
+  // update roster of stream
+
+  if ((localStorage.getItem('gameType') == "RL") || (localStorage.getItem('gameType') == "OW")) {
+    var formattedRoster = localStorage.getItem('roster');
+    formattedRoster = formattedRoster.replaceAll("<br>", "\n");
+
+    filePath = path.join(__dirname,'..', 'OBSLocalFiles', localStorage.getItem("rosterTxt"));
+    fs.writeFile(filePath, formattedRoster, (err) => {
+        if (err) throw err;
+    })
+  }
+
+  // update mobalytics
+
+  if (localStorage.getItem('gameType') == "LoL") {
+
+    var rosterArray = JSON.parse(localStorage.getItem("rosterArray"));
+    var currentRoster = JSON.parse(localStorage.getItem("currentRoster"));
+    for (var n in rosterArray) {
+
+      // search for name in main roster
+
+      for (var o in currentRoster) {
+        if (currentRoster[o]["Last, First"] == rosterArray[n]["Last, First"]) {
+
+          // change appropriate card
+
+          var playerTypeCard = rosterArray[n]["Player Type"];
+
+          if (currentRoster[o]["Mobalytics Weblink"]) {
+
+            // update stream preview card
+            document.getElementById(playerTypeCard).src = currentRoster[o]["Mobalytics Weblink"];
+
+            // update html card
+            updateMobalyticsCard(rosterArray[n]["Player Type"], currentRoster[o]["Mobalytics Weblink"]);
+          } else {
+            document.getElementById(playerTypeCard).src = "../htmlTemplates/NoCard.html";
+
+          }
+
+          // switch (rosterArray[n]["Player Type"]) {
+          //
+          // }
+        }
+      }
+    }
+  }
 
 }
 
@@ -246,9 +306,6 @@ function readTSV() {
   let inputRosterRow = document.getElementById("inputRosterRow");
   inputRosterRow.style.display = "none";
 
-
-
-
 }
 
 
@@ -267,7 +324,6 @@ function updatePlayerDropdown(isRefreshed) {
 
     if (currentRoster[i]['Display']) {
       var opt = currentRoster[i]['Last, First'];
-      console.log(opt);
       var el = document.createElement("option");
       el.textContent = opt;
       el.value = opt;
@@ -288,10 +344,27 @@ function addPlayer() {
   // check if player type exists? TODO
   var selectedPlayerType = document.getElementById('playerTypeDropdown').value;
 
-  var rosterAppended = localStorage.getItem('roster') + "<br>- " + selectedPlayerName + ": " + selectedPlayerType;
+  if (localStorage.getItem("gameType") == "LoL") {
+    var rosterAppended = localStorage.getItem('roster') + "<br>" + selectedPlayerName + " | " + selectedPlayerType;
+  } else {
+    var rosterAppended = localStorage.getItem('roster') + "<br>" + selectedPlayerName;
+  }
   localStorage.setItem('roster', rosterAppended);
 
+
+  // add player names to list for parsing for mobalytics if necessary
+  if (localStorage.getItem("gameType") == "LoL") {
+    var playerArray = {
+      "Last, First": selectedPlayerName,
+      "Player Type": selectedPlayerType,
+    };
+
+    var rosterArray = JSON.parse(localStorage.getItem("rosterArray") || "[]");
+    rosterArray.push(playerArray);
+    localStorage.setItem('rosterArray', JSON.stringify(rosterArray));
+  }
   updateStreamPreview();
+
 
 }
 
@@ -302,6 +375,29 @@ function updateGamePanel() {
 
   var inputRosterRow = document.getElementById("inputRosterRow");
   inputRosterRow.style.display = "none";
+
+  // set mobalytics cards to hidden if the game isn't LoL
+  if (localStorage.getItem("gameType") == "LoL") {
+
+    // set player type to be hidden if game isn't LoL
+    document.getElementById("playerTypeDiv").style.visibility = "visible";
+
+    document.getElementById("Top").style.visibility = "visible";
+    document.getElementById("Middle").style.visibility = "visible";
+    document.getElementById("ADC").style.visibility = "visible";
+    document.getElementById("Support").style.visibility = "visible";
+    document.getElementById("Jungle").style.visibility = "visible";
+  } else {
+    document.getElementById("playerTypeDiv").style.visibility = "hidden";
+
+
+    document.getElementById("Top").style.visibility = "hidden";
+    document.getElementById("Middle").style.visibility = "hidden";
+    document.getElementById("ADC").style.visibility = "hidden";
+    document.getElementById("Support").style.visibility = "hidden";
+    document.getElementById("Jungle").style.visibility = "hidden";
+  }
+
 
 
   updatePlayerDropdown(true);
@@ -320,7 +416,6 @@ function updateSeason(inputSeason) {
 }
 
 function addNewRoster() {
-    console.log("add");
     let inputRosterRow = document.getElementById("inputRosterRow");
     inputRosterRow.style.display = "block";
 
@@ -331,7 +426,22 @@ function displayOBSLocalFile(element) {
   var id = element.id;
   switch (id) {
     case "inputTitleSettings":
-      alert("test!");
+      alert("Point local file to: " + localStorage.getItem("titleTxt"));
+      break;
+    case "rosterSettings":
+
+      if (localStorage.getItem("gameType") == "LoL") {
+        alert("Point local file to: \n" +
+        "Top: Top.html\n" +
+        "Mid: Middle.html\n" +
+        "Jungle: Jungle.html\n" +
+        "ADC: ADC.html\n" +
+        "Support: Support.html");
+
+      } else {
+        alert("Point local file to: " + localStorage.getItem("rosterTxt"));
+
+      }
       break;
   }
 

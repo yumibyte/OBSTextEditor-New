@@ -1,7 +1,6 @@
 
 const { app, BrowserWindow } = require('electron');
 const path = require('path');
-console.log(path);
 
 // const fs = require('fs');
 
