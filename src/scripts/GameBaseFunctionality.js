@@ -3,6 +3,11 @@ function navigateToGamePanel(gameType) {
   localStorage.setItem("gameType", gameType);
   localStorage.setItem("roster", "");
 
+  // initialize all text files
+  localStorage.setItem("titleTxt", "title.txt");
+  localStorage.setItem("rosterTxt", "roster.txt");
+
+
 
   // determine title
 
@@ -156,14 +161,37 @@ function refreshPage() {
 
 
 function clearRoster() {
-  //
-  console.log(localStorage.getItem('currentRoster'));
+
+  localStorage.setItem('roster', "");
+  updateStreamPreview();
 
 }
+
+
+// function writeTextFile(filepath, output) {
+
+  // var mainExFlData = new File([""], filepath);
+  // mainExFlData.open("w"); //
+  // mainExFlData.writeln(output);
+  // mainExFlData.close();
+// }
 
 function generateStream() {
-  //
+
+  console.log("ran!");
+  const fs = require('fs');
+  const path = require('path');
+
+
+  // var renderer = require('./fs.js');
+    // update title of stream
+  var filePath = path.join(__dirname,'..', 'OBSLocalFiles', 'TestText.txt');
+  fs.writeFile(filePath, localStorage.getItem("title"), (err) => {
+      if (err) throw err;
+  })
+
 }
+
 
 
 // generate title
@@ -178,15 +206,19 @@ function generateTitle() {
 
 // todo
     case "OW":
-      localStorage.setItem("title", "Oakmont Fenrir vs " + inputTitle + " | " + localStorage.getItem('season') + " | PlayVS");
+      localStorage.setItem("title", "Oakmont Fenrir vs " + inputTitle + " | " + localStorage.getItem('season') + " | PlayVS                       ");
       break;
     case "RL":
+      localStorage.setItem("title", "Oakmont Ragnarok vs " + inputTitle + " | " + localStorage.getItem('season') + " | Varsity Rocket League                        ");
       break;
     case "LoL":
+      localStorage.setItem("title", "Oakmont Berserkers vs " + inputTitle + " | " + localStorage.getItem('season') + " | Varsity LoL                       ");
       break;
     case "SSBU":
+      localStorage.setItem("title", inputTitle + " | Oakmont Drakkar | " + localStorage.getItem('season') + " | Varsity SSBU                        ")
       break;
     case "Chess":
+      localStorage.setItem("title", inputTitle + " | Chess | " + localStorage.getItem('season') + " | " + "Oakmont Esports                        ")
       break;
   }
   updateStreamPreview();
@@ -291,5 +323,16 @@ function addNewRoster() {
     console.log("add");
     let inputRosterRow = document.getElementById("inputRosterRow");
     inputRosterRow.style.display = "block";
+
+}
+
+function displayOBSLocalFile(element) {
+
+  var id = element.id;
+  switch (id) {
+    case "inputTitleSettings":
+      alert("test!");
+      break;
+  }
 
 }
