@@ -250,6 +250,8 @@ function generateStream() {
     }
   }
 
+  alert("Generated stream!");
+
 }
 
 
