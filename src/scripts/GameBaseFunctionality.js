@@ -3,6 +3,11 @@ function navigateToGamePanel(gameType) {
   localStorage.setItem("gameType", gameType);
   localStorage.setItem("roster", "");
 
+  // initialize all text files
+  localStorage.setItem("titleTxt", "title.txt");
+  localStorage.setItem("rosterTxt", "roster.txt");
+
+
 
   // determine title
 
@@ -162,9 +167,31 @@ function clearRoster() {
 
 }
 
+
+// function writeTextFile(filepath, output) {
+
+  // var mainExFlData = new File([""], filepath);
+  // mainExFlData.open("w"); //
+  // mainExFlData.writeln(output);
+  // mainExFlData.close();
+// }
+
 function generateStream() {
-  //
+
+  console.log("ran!");
+  const fs = require('fs');
+  const path = require('path');
+
+
+  // var renderer = require('./fs.js');
+    // update title of stream
+  var filePath = path.join(__dirname,'..', 'OBSLocalFiles', 'TestText.txt');
+  fs.writeFile(filePath, localStorage.getItem("title"), (err) => {
+      if (err) throw err;
+  })
+
 }
+
 
 
 // generate title
@@ -296,5 +323,16 @@ function addNewRoster() {
     console.log("add");
     let inputRosterRow = document.getElementById("inputRosterRow");
     inputRosterRow.style.display = "block";
+
+}
+
+function displayOBSLocalFile(element) {
+
+  var id = element.id;
+  switch (id) {
+    case "inputTitleSettings":
+      alert("test!");
+      break;
+  }
 
 }
