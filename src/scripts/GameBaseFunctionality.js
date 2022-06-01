@@ -174,10 +174,24 @@ function clearRoster() {
 
 }
 
+function updateMobalyticsCard(playerType, mobalyticsLink) {
+
+  var fs = require('fs');
+  const path = require('path');
+
+  var htmlContent = '<iframe id="" src="' + mobalyticsLink + '"width="300" height="300"></iframe>';
+
+  // update title of stream
+  var filePath = path.join(__dirname,'..', 'OBSLocalFiles', playerType + ".html");
+  fs.writeFile(filePath, htmlContent, (err) => {
+      if (err) throw err;
+  })
+
+}
+
 
 function generateStream() {
 
-  console.log("ran!");
   const fs = require('fs');
   const path = require('path');
 
@@ -207,8 +221,6 @@ function generateStream() {
     var currentRoster = JSON.parse(localStorage.getItem("currentRoster"));
     for (var n in rosterArray) {
 
-      console.log(rosterArray[n]["Last, First"]);
-
       // search for name in main roster
 
       for (var o in currentRoster) {
@@ -219,7 +231,12 @@ function generateStream() {
           var playerTypeCard = rosterArray[n]["Player Type"];
 
           if (currentRoster[o]["Mobalytics Weblink"]) {
+
+            // update stream preview card
             document.getElementById(playerTypeCard).src = currentRoster[o]["Mobalytics Weblink"];
+
+            // update html card
+            updateMobalyticsCard(rosterArray[n]["Player Type"], currentRoster[o]["Mobalytics Weblink"]);
           } else {
             document.getElementById(playerTypeCard).src = "../htmlTemplates/NoCard.html";
 
@@ -307,7 +324,6 @@ function updatePlayerDropdown(isRefreshed) {
 
     if (currentRoster[i]['Display']) {
       var opt = currentRoster[i]['Last, First'];
-      console.log(opt);
       var el = document.createElement("option");
       el.textContent = opt;
       el.value = opt;
@@ -328,19 +344,25 @@ function addPlayer() {
   // check if player type exists? TODO
   var selectedPlayerType = document.getElementById('playerTypeDropdown').value;
 
-  var rosterAppended = localStorage.getItem('roster') + "<br>" + selectedPlayerName + " | " + selectedPlayerType;
+  if (localStorage.getItem("gameType") == "LoL") {
+    var rosterAppended = localStorage.getItem('roster') + "<br>" + selectedPlayerName + " | " + selectedPlayerType;
+  } else {
+    var rosterAppended = localStorage.getItem('roster') + "<br>" + selectedPlayerName;
+  }
   localStorage.setItem('roster', rosterAppended);
 
-  // add player names to list for parsing for mobalytics if necessary
-  var playerArray = {
-    "Last, First": selectedPlayerName,
-    "Player Type": selectedPlayerType,
-  };
 
-  var rosterArray = JSON.parse(localStorage.getItem("rosterArray") || "[]");
-  rosterArray.push(playerArray);
-  localStorage.setItem('rosterArray', JSON.stringify(rosterArray));
-  console.log(rosterArray);
+  // add player names to list for parsing for mobalytics if necessary
+  if (localStorage.getItem("gameType") == "LoL") {
+    var playerArray = {
+      "Last, First": selectedPlayerName,
+      "Player Type": selectedPlayerType,
+    };
+
+    var rosterArray = JSON.parse(localStorage.getItem("rosterArray") || "[]");
+    rosterArray.push(playerArray);
+    localStorage.setItem('rosterArray', JSON.stringify(rosterArray));
+  }
   updateStreamPreview();
 
 
@@ -353,6 +375,29 @@ function updateGamePanel() {
 
   var inputRosterRow = document.getElementById("inputRosterRow");
   inputRosterRow.style.display = "none";
+
+  // set mobalytics cards to hidden if the game isn't LoL
+  if (localStorage.getItem("gameType") == "LoL") {
+
+    // set player type to be hidden if game isn't LoL
+    document.getElementById("playerTypeDiv").style.visibility = "visible";
+
+    document.getElementById("Top").style.visibility = "visible";
+    document.getElementById("Middle").style.visibility = "visible";
+    document.getElementById("ADC").style.visibility = "visible";
+    document.getElementById("Support").style.visibility = "visible";
+    document.getElementById("Jungle").style.visibility = "visible";
+  } else {
+    document.getElementById("playerTypeDiv").style.visibility = "hidden";
+
+
+    document.getElementById("Top").style.visibility = "hidden";
+    document.getElementById("Middle").style.visibility = "hidden";
+    document.getElementById("ADC").style.visibility = "hidden";
+    document.getElementById("Support").style.visibility = "hidden";
+    document.getElementById("Jungle").style.visibility = "hidden";
+  }
+
 
 
   updatePlayerDropdown(true);
@@ -371,7 +416,6 @@ function updateSeason(inputSeason) {
 }
 
 function addNewRoster() {
-    console.log("add");
     let inputRosterRow = document.getElementById("inputRosterRow");
     inputRosterRow.style.display = "block";
 
@@ -385,7 +429,19 @@ function displayOBSLocalFile(element) {
       alert("Point local file to: " + localStorage.getItem("titleTxt"));
       break;
     case "rosterSettings":
-      alert("Point local file to: " + localStorage.getItem("rosterTxt"));
+
+      if (localStorage.getItem("gameType") == "LoL") {
+        alert("Point local file to: \n" +
+        "Top: Top.html\n" +
+        "Mid: Middle.html\n" +
+        "Jungle: Jungle.html\n" +
+        "ADC: ADC.html\n" +
+        "Support: Support.html");
+
+      } else {
+        alert("Point local file to: " + localStorage.getItem("rosterTxt"));
+
+      }
       break;
   }
 

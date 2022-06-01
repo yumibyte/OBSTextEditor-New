@@ -26,6 +26,9 @@
       rel="stylesheet">
     <script src="https://d3js.org/d3.v4.min.js"></script>
 
+
+    <link rel="import" href="Top.html">
+
   </head>
 
   <body class="content" onload="updateGamePanel()">
@@ -138,13 +141,14 @@
                                   </div>
 
 
+                                  <div class="row">
                                     <div class="form-group">
                                         <div class="h6 mb-0 text-gray-800">Player Name</div>
 
                                         <select id="playerNameDropdown" class="btn btn-primary dropdown-toggle"></select>
                                     </div>
 
-                                    <div class="form-group">
+                                    <div id="playerTypeDiv" class="margin-right form-group">
                                         <div class="h6 mb-0 text-gray-800">Player Type</div>
                                         <select id="playerTypeDropdown" class="btn btn-primary dropdown-toggle">
                                           <option value="Top">Top</option>
@@ -155,6 +159,7 @@
                                         </select>
 
                                     </div>
+                                  </div>
 
                                     <div class="row col-lg-8 content-spacer">
 
@@ -225,6 +230,7 @@
 
               <!-- mobalytics cards -->
               <iframe id="Top" src="https://obs.mobalytics.gg/user/cbTwrZ7Ccnn4ftLNG39ZAg" width="300" height="300"></iframe>
+
               <iframe id="Middle" src="https://obs.mobalytics.gg/user/cbTwrZ7Ccnn4ftLNG39ZAg" width="300" height="300"></iframe>
               <iframe id="Support" src="https://obs.mobalytics.gg/user/cbTwrZ7Ccnn4ftLNG39ZAg" width="300" height="300"></iframe>
               <iframe id="ADC" src="https://obs.mobalytics.gg/user/cbTwrZ7Ccnn4ftLNG39ZAg" width="300" height="300"></iframe>
