@@ -10,6 +10,11 @@ function navigateToGamePanel(gameType) {
   localStorage.setItem("titleTxt", "title.txt");
   localStorage.setItem("rosterTxt", "roster.txt");
 
+  // initialize Scoreboard
+  localStorage.setItem("homeScore", 0);
+  localStorage.setItem("visitorScore", 0);
+
+
 
 
   // determine title
@@ -241,14 +246,12 @@ function generateStream() {
             document.getElementById(playerTypeCard).src = "../htmlTemplates/NoCard.html";
 
           }
-
-          // switch (rosterArray[n]["Player Type"]) {
-          //
-          // }
         }
       }
     }
   }
+
+  alert("Generated stream!");
 
 }
 
@@ -444,5 +447,106 @@ function displayOBSLocalFile(element) {
       }
       break;
   }
+
+}
+
+function updateScoreboard(modifier) {
+
+  var fs = require('fs');
+  const path = require('path');
+
+  var homeScore = 0;
+  var visitorScore = 0;
+
+  switch (modifier) {
+
+    case "subtractHome":
+      homeScore = JSON.parse(localStorage.getItem("homeScore"));
+      homeScore -= 1;
+      localStorage.setItem("homeScore", JSON.stringify(homeScore));
+      break;
+    case "addHome":
+      homeScore = JSON.parse(localStorage.getItem("homeScore"));
+      homeScore += 1;
+      localStorage.setItem("homeScore", JSON.stringify(homeScore));
+      break;
+    case "subtractVisitor":
+
+      visitorScore = JSON.parse(localStorage.getItem("visitorScore"));
+      visitorScore -= 1;
+      localStorage.setItem("visitorScore", JSON.stringify(visitorScore));
+      break;
+    case "addVisitor":
+      visitorScore = JSON.parse(localStorage.getItem("visitorScore"));
+      visitorScore += 1;
+      localStorage.setItem("visitorScore", JSON.stringify(visitorScore));
+      break;
+  }
+
+  console.log(visitorScore);
+  console.log(homeScore);
+
+    var htmlContent = `
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <meta charset="UTF-8" />
+        <title>OBS Text Editor</title>
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css"
+        />
+        <link rel="stylesheet" href="../index.css"/>
+
+
+        <!-- Custom fonts for this template-->
+        <!-- <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"> -->
+        <link
+            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+            rel="stylesheet">
+
+        <!-- Custom styles for this template-->
+        <link href="../css/sb-admin-2.min.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+
+        <script src="https://d3js.org/d3.v4.min.js"></script>
+
+      </head>
+
+        <div>
+
+
+          <center>
+                <div class="row justify-content-center">
+                  <div class="container-square">
+
+
+                    <div class="card-rectangle o-hidden border-0 shadow-lg">
+                            <!-- Nested Row within Card Body -->
+
+
+
+                                <div class="border row justify-content-center">
+
+                                    <div class="h2 mb-0 font-weight-bold text-gray-800">Home: ` + homeScore + `</div>
+
+                                    <div class="margin-right-score h2 mb-0 font-weight-bold text-gray-800">Visitor: ` + visitorScore + `</div>
+                                </div>
+
+                        </div>
+                  </div>
+            </a>
+          </center>
+        </div>
+
+
+    </html>`
+
+    // update title of stream
+    var filePath = path.join(__dirname,'..', 'OBSLocalFiles', "Scoreboard.html");
+    fs.writeFile(filePath, htmlContent, (err) => {
+        if (err) throw err;
+    })
 
 }
