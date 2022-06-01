@@ -142,3 +142,20 @@ body {
 
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
 .show {display:block;}
+
+/* score board elements */
+
+.margin-right-score {
+  margin-left: 100px;
+}
+
+.card-rectangle {
+  width: 90%;
+  height: 0;
+  padding-bottom: 30%;
+}
+
+.border {
+  border-style: double;
+  border:300px;
+}
