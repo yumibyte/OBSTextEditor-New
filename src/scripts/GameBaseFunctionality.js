@@ -3,6 +3,9 @@ function navigateToGamePanel(gameType) {
   localStorage.setItem("gameType", gameType);
   localStorage.setItem("roster", "");
 
+  var initArray = [];
+  localStorage.setItem("rosterArray", JSON.stringify(initArray));
+
   // initialize all text files
   localStorage.setItem("titleTxt", "title.txt");
   localStorage.setItem("rosterTxt", "roster.txt");
@@ -163,6 +166,10 @@ function refreshPage() {
 function clearRoster() {
 
   localStorage.setItem('roster', "");
+  var initArray = [];
+
+  localStorage.setItem('rosterArray', JSON.stringify(initArray));
+
   updateStreamPreview();
 
 }
@@ -182,14 +189,21 @@ function generateStream() {
 
   // update roster of stream
 
-  var formattedRoster = localStorage.getItem('roster');
-  formattedRoster = formattedRoster.replaceAll("<br>", "\n");
+  if ((localStorage.getItem('gameType') == "RL") || (localStorage.getItem('gameType') == "OW")) {
+    var formattedRoster = localStorage.getItem('roster');
+    formattedRoster = formattedRoster.replaceAll("<br>", "\n");
 
-  filePath = path.join(__dirname,'..', 'OBSLocalFiles', localStorage.getItem("rosterTxt"));
-  fs.writeFile(filePath, formattedRoster, (err) => {
-      if (err) throw err;
-  })
+    filePath = path.join(__dirname,'..', 'OBSLocalFiles', localStorage.getItem("rosterTxt"));
+    fs.writeFile(filePath, formattedRoster, (err) => {
+        if (err) throw err;
+    })
+  }
 
+  // update mobalytics
+
+  if (localStorage.getItem('gameType') == "LoL") {
+
+  }
 
 }
 
@@ -247,9 +261,6 @@ function readTSV() {
   let inputRosterRow = document.getElementById("inputRosterRow");
   inputRosterRow.style.display = "none";
 
-
-
-
 }
 
 
@@ -292,6 +303,16 @@ function addPlayer() {
   var rosterAppended = localStorage.getItem('roster') + "<br>" + selectedPlayerName + " | " + selectedPlayerType;
   localStorage.setItem('roster', rosterAppended);
 
+  // add player names to list for parsing for mobalytics if necessary
+  var playerArray = {
+    playerName: selectedPlayerName,
+    playerType: selectedPlayerType,
+  };
+
+  var rosterArray = JSON.parse(localStorage.getItem("rosterArray") || "[]");
+  rosterArray.push(playerArray);
+  localStorage.setItem('rosterArray', JSON.stringify(rosterArray));
+  console.log(rosterArray);
   updateStreamPreview();
 
 
