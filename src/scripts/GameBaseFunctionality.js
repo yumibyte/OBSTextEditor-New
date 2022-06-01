@@ -168,27 +168,28 @@ function clearRoster() {
 }
 
 
-// function writeTextFile(filepath, output) {
-
-  // var mainExFlData = new File([""], filepath);
-  // mainExFlData.open("w"); //
-  // mainExFlData.writeln(output);
-  // mainExFlData.close();
-// }
-
 function generateStream() {
 
   console.log("ran!");
   const fs = require('fs');
   const path = require('path');
 
-
-  // var renderer = require('./fs.js');
-    // update title of stream
-  var filePath = path.join(__dirname,'..', 'OBSLocalFiles', 'TestText.txt');
+  // update title of stream
+  var filePath = path.join(__dirname,'..', 'OBSLocalFiles', localStorage.getItem("titleTxt"));
   fs.writeFile(filePath, localStorage.getItem("title"), (err) => {
       if (err) throw err;
   })
+
+  // update roster of stream
+
+  var formattedRoster = localStorage.getItem('roster');
+  formattedRoster = formattedRoster.replaceAll("<br>", "\n");
+
+  filePath = path.join(__dirname,'..', 'OBSLocalFiles', localStorage.getItem("rosterTxt"));
+  fs.writeFile(filePath, formattedRoster, (err) => {
+      if (err) throw err;
+  })
+
 
 }
 
@@ -288,10 +289,11 @@ function addPlayer() {
   // check if player type exists? TODO
   var selectedPlayerType = document.getElementById('playerTypeDropdown').value;
 
-  var rosterAppended = localStorage.getItem('roster') + "<br>- " + selectedPlayerName + ": " + selectedPlayerType;
+  var rosterAppended = localStorage.getItem('roster') + "<br>" + selectedPlayerName + " | " + selectedPlayerType;
   localStorage.setItem('roster', rosterAppended);
 
   updateStreamPreview();
+
 
 }
 
