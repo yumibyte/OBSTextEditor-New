@@ -331,7 +331,10 @@ function displayOBSLocalFile(element) {
   var id = element.id;
   switch (id) {
     case "inputTitleSettings":
-      alert("test!");
+      alert("Point local file to: " + localStorage.getItem("titleTxt"));
+      break;
+    case "rosterSettings":
+      alert("Point local file to: " + localStorage.getItem("rosterTxt"));
       break;
   }
 
